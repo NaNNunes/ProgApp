@@ -27,7 +27,6 @@ public class PROJECT_9_RENAN {
        int waitTime_One, waitTime_Two;
        // passedCars
        int passedCar_St, passedCar_Nd;
-       int car_Wait_One = 0, car_Wait_Two = 0; 
        
        // colors
        String st_Tl_Status, nd_Tl_Status;
@@ -118,12 +117,10 @@ public class PROJECT_9_RENAN {
 
                 // waiting time
                 if (st_Tl_Status != "Green" && newCar_One > 0){
-                    waitTime_One ++;
-                    car_Wait_One += newCar_One;
+                    waitTime_One += newCar_One;
                 }
                 if (nd_Tl_Status != "Green" && newCar_Two > 0){
-                    waitTime_Two ++;
-                    car_Wait_Two += newCar_Two;
+                    waitTime_Two += newCar_Two;
                 }
 
                 // output
@@ -132,7 +129,7 @@ public class PROJECT_9_RENAN {
             }
             System.out.printf("Passed cars: %d\n", passedCar_St + passedCar_Nd);
             System.out.printf("Cars in traffic jam: %d\n",newCar_One + newCar_Two + outCar_St + outCar_Nd);
-            System.out.printf("Avarage waiting tiime:  Queue One = %ds Queue Two = %ds\n\n", car_Wait_One/waitTime_One, car_Wait_Two / waitTime_Two);
+            System.out.printf("Avarage waiting tiime:  Queue One = %ds Queue Two = %ds\n\n", waitTime_One/newCar_One, waitTime_Two/newCar_Two);
        }
     }
 }
