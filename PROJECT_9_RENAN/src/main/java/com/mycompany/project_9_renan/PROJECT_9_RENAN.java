@@ -4,135 +4,138 @@
 
 package com.mycompany.project_9_renan;
 
+import java.util.Random;
+
 /**
  *
- * @author renan
+ * @author r.nunes
  */
-import java.util.Random;
 public class PROJECT_9_RENAN {
 
     public static void main(String[] args) {
-       Random spawn = new Random();
-       int rand;
-       
-       final int limitLoop = 600, limitTrafficLight = 80, limitQueueCar = 10;
-       
-       int timer = 0;
-       
-       // more Cars
-       int newCar_One, newCar_Two;
-       // car out queue
-       int outCar_St, outCar_Nd;
-       // waiting time
-       int waitTime_One, waitTime_Two;
-       // passedCars
-       int passedCar_St, passedCar_Nd;
-       int car_Wait_One = 0, car_Wait_Two = 0; 
-       
-       // colors
-       String st_Tl_Status, nd_Tl_Status;
-       for (int i = 0; i < 3; i++){
-            newCar_One = 0; newCar_Two = 0;
-            outCar_St = 0; outCar_Nd = 0;
-            waitTime_One = 0; waitTime_Two = 0;
-            passedCar_St = 0; passedCar_Nd = 0;
+            Random rand = new Random();
+    int spawn;
+    
+    final int limitCycle = 600;
+    final int limitTl = 80;
+    final int limitQueue = 10;
+    
+    int timer = 0;
+    int waitTime_FirstTl, avrgWTime_St;
+    int waitTime_SecondTl, avrgWTime_Nd;
+
+    int moreCar_FirstTl;
+    int passed_FirstTl;
+    int outCar_FirstTl;
+    
+    int moreCar_SecondTl;
+    int passed_SecondTl; 
+    int outCar_SecondTl;
+
+    int carInJam;
+    
+    String color_FirstTl;
+    String color_SecondTl;
+
+    for (int i = 0; i < 3; i++ ){
+      waitTime_FirstTl = 0; waitTime_SecondTl = 0;
+      moreCar_FirstTl = 0; moreCar_SecondTl = 0;
+      passed_FirstTl = 0; passed_SecondTl = 0; 
+      outCar_FirstTl = 0; outCar_SecondTl = 0;
+      carInJam = 0;
+  
+      for (int sec = 0; sec <= limitCycle; sec ++){
+  
+        if (timer <= limitTl){
+          timer++;
+        }
+        else{
+          timer = 0;
+        }
+  
+        if (timer <= 30){
+          color_FirstTl = "Green";
+  
+          if (moreCar_FirstTl > 0){
+            passed_FirstTl ++;
+            moreCar_FirstTl --;
             
-            for (int sec = 0; sec <= limitLoop; sec++){
-
-                // timer
-                if (timer <= limitTrafficLight){
-                    timer++;
-                }
-                else {
-                    timer = 0;
-                }
-
-                // Intersection
-                // Fisrt Traffic Light 
-                if (timer <= 30){
-                    st_Tl_Status = "Green";
-                    passedCar_St ++;
-                    if (newCar_One > 0){
-                        newCar_One --;
-                        if (outCar_St > 0){
-                            outCar_St --;
-                        }
-                    }
-                }
-                else if (timer <= 35){
-                    st_Tl_Status = "Yellow";
-                }
-                else{
-                    st_Tl_Status = "Red";
-                }
-
-                // Second Traffic Light
-                if (timer <= 45){
-                    nd_Tl_Status = "Red";
-                }
-                else if (timer <= 50){
-                    nd_Tl_Status = "Yellow";
-                }
-                else {
-                    nd_Tl_Status = "Green";
-                    passedCar_Nd ++;
-                    if (newCar_Two > 0){
-                        newCar_Two --;
-                        if (outCar_Nd > 0){
-                            outCar_Nd --;
-                        }
-                    }
-                }
-
-                // accident alert
-                if (nd_Tl_Status == "Green" && nd_Tl_Status == st_Tl_Status){
-                    System.out.printf("\n!!! There was an accident at the intersection %d !!!\n", i);
-                    sec = limitLoop + 1;
-                }
-
-                // more Cars
-                while (sec % 15 == 0){
-                    //first
-                    if (st_Tl_Status != "Green"){
-                        rand = spawn.nextInt(limitQueueCar * 2);
-                        if (newCar_One <= limitQueueCar){
-                            newCar_One += rand;
-                        }
-                        else{
-                            outCar_St += rand;
-                        }
-                    }
-
-                    // second
-                    if (nd_Tl_Status != "Green"){
-                        rand = spawn.nextInt(limitQueueCar * 2);
-                        if (newCar_Two <= limitQueueCar){
-                            newCar_Two += rand;
-                        }
-                        else {
-                            outCar_Nd += rand;
-                        }
-                    }
-                    break;
-                }
-
-                // waiting time
-                if (st_Tl_Status != "Green" && newCar_One > 0){
-                    waitTime_One ++;
-                    car_Wait_One += newCar_One;
-                }
-                if (nd_Tl_Status != "Green" && newCar_Two > 0){
-                    waitTime_Two ++;
-                    car_Wait_Two += newCar_Two;
-                }
-
-                // output
-                System.out.printf("First Traffic Light Status: %s (%2ds) - %3ds ----- ", st_Tl_Status, timer, sec);
-                System.out.printf("Second Traffic Light Status: %s (%2ds) - %3ds\n", nd_Tl_Status, timer, sec);
+            if (outCar_FirstTl > 0){
+              outCar_FirstTl --;
+              moreCar_FirstTl ++;
             }
-            System.out.printf("Passed cars: %d\n", passedCar_St + passedCar_Nd);
-            System.out.printf("Cars in traffic jam: %d\n",newCar_One + newCar_Two + outCar_St + outCar_Nd);
-            System.out.printf("Avarage waiting tiime:  Queue One = %ds Queue Two = %ds\n\n", car_Wait_One/waitTime_One, car_Wait_Two / waitTime_Two);
-       }
+          }
+        }      
+        else if (timer <= 35){
+          color_FirstTl = "Yellow";
+        }
+        else {
+          color_FirstTl = "Red";
+        }
+  
+        if (timer <= 45){
+          color_SecondTl = "Red";
+        }
+        else if (timer <= 75){
+          color_SecondTl = "Green";
+          if (moreCar_SecondTl > 0){
+            passed_SecondTl ++;
+            moreCar_SecondTl --;
+            if (outCar_SecondTl > 0){
+              outCar_SecondTl --;
+              moreCar_SecondTl ++;
+            }
+          }
+        }
+        else {
+          color_SecondTl = "Yellow";
+        }
+  
+        while (sec % 15 == 0){
+          spawn = rand.nextInt(limitQueue + 2);
+          
+          if (moreCar_FirstTl <= limitQueue){
+            moreCar_FirstTl += spawn;
+            if (moreCar_FirstTl > limitQueue){
+              outCar_FirstTl += (moreCar_FirstTl - limitQueue); 
+            }
+          }
+          else {
+            outCar_FirstTl += spawn;
+          }
+  
+          if (moreCar_SecondTl <= limitQueue){
+            moreCar_SecondTl += spawn;
+            if (moreCar_SecondTl > limitQueue){
+              outCar_SecondTl += moreCar_SecondTl - limitQueue;
+            }
+          }
+          else {
+            outCar_SecondTl += spawn;
+          }
+          
+          break;
+        }
+  
+        if (color_FirstTl != "Green" && moreCar_FirstTl > 0){
+          waitTime_FirstTl += moreCar_FirstTl;
+        }
+        if (color_SecondTl != "Green" && moreCar_FirstTl > 0){
+          waitTime_SecondTl += moreCar_SecondTl;
+        }
+  
+        System.out.printf(" --- %3ds --- (%2ds) ---\n", sec, timer);
+        System.out.printf(" - First Queue : %s ----- ", color_FirstTl);
+        System.out.printf("Second Queue : %s\n", color_SecondTl);
+      }
+      carInJam = outCar_FirstTl + outCar_SecondTl;
+      avrgWTime_St = waitTime_FirstTl / passed_FirstTl;
+      avrgWTime_Nd = waitTime_SecondTl / passed_SecondTl ;
+      System.out.printf("\nAvarage Time: \n");
+      System.out.printf(" - First Queue: %ds --- Second Queue: %ds\n", avrgWTime_St, avrgWTime_Nd);
+      System.out.printf("Passed Cars: \n");
+      System.out.printf(" - First Queue: %d --- Second Queue %d\n", passed_FirstTl, passed_SecondTl);
+      System.out.printf("Cars in Jam : %d\n\n", carInJam);
+    }
     }
 }
