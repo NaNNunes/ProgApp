@@ -26,7 +26,7 @@ public class PROJECT_12_RENAN {
     
     // first player
     public static String[] playerOne(){
-        final int num_Dicas = 2;
+        final int num_Dicas = 5;
         String[] dicas = new String[num_Dicas];
         
         System.out.printf("Nome do 1.o jogdor: ");
