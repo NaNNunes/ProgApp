@@ -85,9 +85,7 @@ public class PROJETO_13_RENAN {
                 OutputValues(Array);
                 StrNumber[i] = scanner.nextLine();
                 termos[i] = Integer.parseInt(StrNumber[i]);
-                if (true) {
-                    System.out.println("Valor selecionado: " + Array[termos[i]])
-                }
+                System.out.println("Valor selecionado: " + Array[termos[i]]);
             }
         }
         catch (NumberFormatException erro){
