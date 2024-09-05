@@ -83,7 +83,7 @@ public class PROJETO_13_RENAN {
         }
     }
     
-    //selecinar termos
+    //selecionar termos
     public static void termsSelection(){
         String strTermos;
         final int qtdNum = 2;
