@@ -21,15 +21,16 @@ public class PROJETO_14_RENAN {
         InputNum();
         OutputNum();
         sortArray();
+        somador();
     }
     // entrada de numeros
     public static void InputNum() throws IOException{
-        for (int i = 0; i < tam; i++) {
-            for (int j = 0; j < tam; j++) {
-                System.out.printf("Informe o %d.o valor da %d.a linha: ", j+1, i+1);
+        for (int l = 0; l < tam; l++) {
+            for (int c = 0; c < tam; c++) {
+                System.out.printf("Informe o %d.o valor da %d.a linha: ", c+1, l+1);
                 data = new DataInputStream(System.in);
                 entrada = data.readLine();
-                array[j][i] = Integer.parseInt(entrada);
+                array[l][c] = Integer.parseInt(entrada);
             }
         }
     }
@@ -41,6 +42,7 @@ public class PROJETO_14_RENAN {
             }
             System.out.println("");
         }
+        System.out.println("");
     }
     
     public static void sortArray(){
@@ -71,15 +73,31 @@ public class PROJETO_14_RENAN {
             
             vet[org] = aux;
         }
+        
         // mostra array
         for (int i = 0; i < vet.length; i++) {
             System.out.printf("%d, ",vet[i]);
         }
+        System.out.println("");
     }
     
     //soma linha e coluna
-    public static void(){
+    public static void somador(){
+        int[] sLine = new int[tam];
+        int[] sCol = new int[tam];
         
+        for (int i = 0; i < tam; i++) {
+            for (int l = 0; l < tam; l++) {
+               for (int c = 0; c < tam; c++) {
+                   sLine[i] += array[c][0];
+               } 
+            }
+        }
+        
+        System.out.println("");
+        for (int i = 0; i < tam; i++) {
+            System.out.printf("%d, ", sLine[i]);
+        } 
     }
 }
 
