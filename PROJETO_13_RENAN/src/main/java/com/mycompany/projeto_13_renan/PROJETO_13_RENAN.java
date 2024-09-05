@@ -28,125 +28,124 @@ package com.mycompany.projeto_13_renan;
 import java.util.Scanner;
 public class PROJETO_13_RENAN {
     public static Scanner scanner = new Scanner(System.in);
+    public static int[] Array = new int[0];
+    public static int[] resultados;
     public static void main(String[] args) {
+        inputLen();
+        System.out.println("------------------------------");
+        inputValues();
         
-        IoIndexAndValues();
-    }
-    
-    // entrada e saida de limites e valores iniciais
-    public static void IoIndexAndValues(){
-        int[] num_Arr;
-        int Arr_Len;
-        String leng;
         
-        System.out.printf("Defina o limite do Vetor: ");
-        leng = scanner.nextLine();
-        
-        try {
-            AssignValues(num_Arr = new int[Arr_Len  = Integer.parseInt(leng)]);
-        }
-        catch (NumberFormatException e){
-            System.out.println("Erro: String ou caractere numerico invalido: "+ e.getMessage());
-        }
     }
-    
-    // Atribunido Valores
-    public static void AssignValues(int[] Array){
-            try {
-                for (int i = 0; i < Array.length; i++){
-                    System.out.printf("Insira o %d.o valor: ", i+1);
-                    String strValue = scanner.nextLine();
-                    int value = Integer.parseInt(strValue);
-                    Array[i] = value;
-                }
-                TermsSelection(Array);
-            }
-            catch (NumberFormatException e){
-                System.out.println("Erro: Esperado valor Inteiro: " + e.getMessage());
-            }
-    }
-    
-    // output de valores do array
-    public static void OutputValues(int[] Array){
-        for (int i = 0; i < Array.length; i++){
-            System.out.printf("%d --- %d\n", i, Array[i]);
-        }
-    }
-    
-    // Selecao de termos para operação
-    public static void TermsSelection(int[] Array){
-        final int AmountNum = 2;
-        String[] StrNumber = new String[AmountNum];
-        int[] termos = new int[AmountNum];
+    // entrada de tamanho
+    public static void inputLen(){
+        String strLen;
+        int len;
+        //int[] array = new int[0];
+        System.out.printf("Informe o tamanho do vetor: ");
+        strLen = scanner.nextLine();
         
         try {
-            for (int i = 0; i < AmountNum; i++){
-                System.out.printf("Selecione um valor pelo Indice: (0 - %d)\n", (Array.length - 1));
-                OutputValues(Array);
-                StrNumber[i] = scanner.nextLine();
-                termos[i] = Integer.parseInt(StrNumber[i]);
-                System.out.println("Valor selecionado: " + Array[termos[i]]);
-            }
+            len = Integer.parseInt(strLen);
+            Array = new int[len];
         }
         catch (NumberFormatException erro){
-            System.out.println("Erro: Esparado Valor inteiro: " + erro.getMessage());
+            System.out.println("Erro: " + erro.getMessage());
         }
-        catch (ArrayIndexOutOfBoundsException erro){
-            System.out.println("Erro: Indice fora do intervalo: " + erro.getMessage());
+        
+    }
+    
+    // entrada de valores ao array
+    public static void inputValues(){
+        String strValue;
+        
+        try {
+            for (int i = 0; i < Array.length; i++) {
+                System.out.printf("Insira o %d.o valor: ", i+1);
+                strValue = scanner.nextLine();
+                Array[i] = Integer.parseInt(strValue);
+            }
+            resultados = new int[Array.length / 2];
+            termsSelection();
+        }
+        catch (NumberFormatException erro){
+            System.out.println("Erro: " + erro.getMessage());
         }
     }
     
-    public static void Operators(int[] number, int resultado){
-        String StrOperator;
-        System.out.println("Selecione um operador: \n[1]Somar +\n[2]Subtrair -\n[3]Dividir :\n[4]Multiplicar x\n -> ");
-        StrOperator = scanner.nextLine();
+    // saida de valores do array
+    public static void outputValues(int[] array){
+        for (int i = 0; i < array.length; i++){
+            if (i < (array.length - 1)){
+                System.out.printf("%d = %d, ", i, (array[i]));
+            }
+            else {
+                System.out.printf("%d = %d\n", i, (array[i]));
+            }
+        }
+    }
+    
+    //selecinar termos
+    public static void termsSelection(){
+        String strTermos;
+        final int qtdNum = 2;
+        int[] termos = new int[qtdNum];
         
+        try{
+            for (int c = 0; c < resultados.length; c++){
+                for (int i = 0; i < qtdNum; i++) {
+                    System.out.println("------------------------------");
+                    System.out.printf("Informe um valor de acordo com indice (0 - %d):\n", (Array.length - 1));
+                    outputValues(Array);
+                    System.out.printf("-> ");
+                    strTermos = scanner.nextLine();
+
+                    int indexValue = Integer.parseInt(strTermos);
+                    System.out.println("Valor selecionado: " + Array[indexValue]);
+                    termos[i] = Array[indexValue];
+                }
+                resultados[c] = operators(termos);
+            }
+            System.out.println("------------------------------");
+            outputValues(resultados);
+        }
+        catch (NumberFormatException erro){
+            System.out.println("Erro: " + erro.getMessage());
+        }
+        catch (IndexOutOfBoundsException erro){
+            System.out.println("Erro: " + erro.getMessage());
+        }
+    }
+    
+    // difinir operação
+    public static int operators(int[] termos){
+        String strOp;
+        int operator;
+        int resultado = 0; 
+
         try {
-            int operator;
-            do {
-                operator = Integer.parseInt(StrOperator);
+            do{
+                System.out.println("------------------------------");
+                System.out.println("Selecione um operador:");
+                System.out.printf("[1]Somar\n[2]Subtrair\n[3]Multiplicar\n[4]Dividir\n -> ");
+                strOp = scanner.nextLine();
+                operator = Integer.parseInt(strOp);
                 switch (operator) {
-                    case 1:
-                        resultado = (number[0] + number[1]);
-                        break;
-                    case 2:
-                        resultado = (number[0] - number[1]);
-                        break;
-                    case 3:
-                        resultado = (number[0] / number[1]);
-                        break;
-                    case 4:
-                        resultado = (number[0] * number[1]);
-                        break;
-                    default:
-                        System.out.println("Valor inválido.\nFavor inserir operador disponivel.");
+                    case 1 -> resultado = termos[0] + termos[1];
+                    case 2 -> resultado = termos[0] - termos[1];
+                    case 3 -> resultado = termos[0] * termos[1];
+                    case 4 -> resultado = termos[0] / termos[1];
+                    default -> System.out.println("Erro: Valor invalido");
                 }
-            } while (operator > 4 || operator < 1);
+            } while(operator > 4 || operator < 1);
         }
         catch (NumberFormatException erro){
-            switch (StrOperator) {
-                case "+":
-                    resultado = (number[0] + number[1]);
-                    break;
-                case "-":
-                    resultado = (number[0] - number[1]);
-                    break;
-                case ":":
-                    resultado = (number[0] / number[1]);
-                    break;
-                case "/":
-                    resultado = (number[0] / number[1]);
-                    break;
-                case "*":
-                    resultado = (number[0] * number[1]);
-                    break;
-                case "x":
-                    resultado = (number[0] * number[1]);
-                    break;
-                default:
-                    System.out.println("Erro: caractere de operador inválido: " + erro.getMessage());
-            }
+            System.out.println("Erro: " + erro.getMessage());
         }
+        catch (ArithmeticException erro){
+            System.out.println("Erro: Dividir por 0");
+        }
+        
+        return resultado;
     }
-    
 }
