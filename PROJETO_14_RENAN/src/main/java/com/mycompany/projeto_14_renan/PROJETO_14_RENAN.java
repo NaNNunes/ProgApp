@@ -140,14 +140,19 @@ public class PROJETO_14_RENAN {
         int[] vetAux = vet;
         int ref = vetAux[0];
         int index;
+        boolean temZero = false;
+        int contaRepet = 0;
         
         for (int i = 0; i < vetAux.length; i++){
             index = i;
             
             if ((index < (vetAux.length -1)) && (vetAux[i] == vetAux[index + 1])){
-                if (vetAux[i] != ref){
+                if (vetAux[i] != ref || vetAux[i] == vetAux[0] && temZero == false){
+                    if (ref == 0){
+                        temZero = true;
+                    }
                     ref = vetAux[i];
-                    System.out.println(ref);
+                    System.out.printf("%d --- %dx\n", ref, contaRepet);
                 }
             }
         }
