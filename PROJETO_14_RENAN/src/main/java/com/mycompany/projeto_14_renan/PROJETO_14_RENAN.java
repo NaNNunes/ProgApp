@@ -137,13 +137,19 @@ public class PROJETO_14_RENAN {
     }
     
     public static void EncontraRepetidos(){
-        int index = 0;
-        int aux = 0;
         int[] vetAux = vet;
+        int ref = vetAux[0];
+        int index;
         
-        int valorVerificado = vetAux[0];
         for (int i = 0; i < vetAux.length; i++){
+            index = i;
             
+            if ((index < (vetAux.length -1)) && (vetAux[i] == vetAux[index + 1])){
+                if (vetAux[i] != ref){
+                    ref = vetAux[i];
+                    System.out.println(ref);
+                }
+            }
         }
     }
 }
