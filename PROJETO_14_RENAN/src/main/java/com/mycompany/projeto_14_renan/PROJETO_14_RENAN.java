@@ -22,7 +22,7 @@ import java.io.IOException;
  */
 public class PROJETO_14_RENAN {
     public static DataInputStream data;
-    public static int entrada;
+    public static String entrada;
     
     public static final int tam = 5;
     public static int[][] array = new int[tam][tam];
@@ -44,7 +44,7 @@ public class PROJETO_14_RENAN {
             EncontraRepetidos();
             System.out.println("");
             CalculaDiagonais();
-            System.out.println("\n");
+            System.out.println("\n\nvalores primos substituidos por [-1]: ");
             NumerosPrimos();
         }
         catch (NumberFormatException erro){
@@ -57,9 +57,10 @@ public class PROJETO_14_RENAN {
             for (int c = 0; c < tam; c++) {
                 System.out.printf("Informe o %d.o valor da %d.a linha: ", c+1, l+1);
                 data = new DataInputStream(System.in);
-                entrada = random.nextInt(lim);//data.readLine();
-                array[l][c] = /*Integer.parseInt(*/entrada;//);
+                entrada = data.readLine();
+                array[l][c] = Integer.parseInt(entrada);
             }
+            System.out.println("");
         }
     }
     //  Saida de valores de entrada
@@ -179,7 +180,7 @@ public class PROJETO_14_RENAN {
             }
         }
     }
-    // calculo de diagonais
+    //  calculo de diagonais
     public static void CalculaDiagonais() {
         int SomaDiagPrincipal = 0;
         int somaDiagSecundaria = 0;
@@ -205,23 +206,28 @@ public class PROJETO_14_RENAN {
         }
         System.out.printf("\nSoma Diagonal Secundaria: %d", somaDiagSecundaria);
     }
-    
+    //  numeros primos substituidos por -1
     public static void NumerosPrimos() {
+        int contaDivisores;
+        // escopo
         for (int i = 0; i < vet.length; i++) {
-            int contaDivisores = 0;
+            contaDivisores = 0;
+            
+            // laco com todos numeros menores que o valor atual
             for (int j = 1; j <= vet[i]; j++) {
+                // verifica quantos numeros dividem o valor atual
                 if (vet[i] % j == 0){
                     contaDivisores ++;
                 }
             }
-            if (vet[i] != 0 && contaDivisores <= 2){
+            if (vet[i] > 1 && contaDivisores <= 2){ // numeros primos(no máximo 2 divisores), naturais e maiores que 1
                 System.out.printf("%3d ", (-1)); 
             }
-            else {
+            else {                                  // numeros compostos e não naturais
                 System.out.printf("%3d ",vet[i]);
             }
             
-            if ((i+1) % tam == 0){
+            if ((i+1) % tam == 0){                  // simulador de matriz
                 System.out.println("");
             }
         }
