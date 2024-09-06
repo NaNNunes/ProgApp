@@ -138,17 +138,32 @@ public class PROJETO_14_RENAN {
     
     public static void EncontraRepetidos(){
         int[] vetAux = vet;
-        int ref = vetAux[0];
-        int index;
-        boolean temZero = false;
-        int contaRepet = 0;
         
+        int ref = vetAux[0]; // referencia base inical sendo o primeiro valor
+        int index = 0;
+        int contaRepet = 0;
+        boolean temZero = false;
+        
+        // MEU FEITO DA SEMANA... ainda sinto que to fazendo errado.
+        // laço de maior escopo
         for (int i = 0; i < vetAux.length; i++){
-            index = i;
+            index = i;      // indice auxiliar
+            contaRepet = 0; // contador de num repetidos
             
+            // verifica se o valor atual é igual ao próximo valor
             if ((index < (vetAux.length -1)) && (vetAux[i] == vetAux[index + 1])){
-                if (vetAux[i] != ref || vetAux[i] == vetAux[0] && temZero == false){
-                    if (ref == 0){
+                // verifica se o valor atual é diferente do valor da referencia
+                    // Ou se valor atual for igual a valor inicial(0) sendo zero nao registrado
+                if (vetAux[i] != ref || (vetAux[i] == vetAux[0] && temZero == false)){
+                    // laço para contagem de repetiçoes
+                    for (int c = 0; c < vetAux.length; c++){
+                        // conta repetições verificando se o valor atual se repetir
+                        if(vetAux[c] == vetAux[i]){
+                            contaRepet ++;
+                        }
+                    }
+                    // se referencia ainda
+                    if (ref == vetAux[0]){
                         temZero = true;
                     }
                     ref = vetAux[i];
