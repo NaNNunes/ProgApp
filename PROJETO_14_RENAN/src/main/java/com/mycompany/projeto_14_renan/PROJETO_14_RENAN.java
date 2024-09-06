@@ -12,11 +12,11 @@ import java.io.IOException;
  *  Escreva um programa que leia uma matriz 5x5 de números inteiros inseridos pelo usuário.
  *  O programa deve realizar as seguintes operações:
 
-    Exibir a matriz original inserida pelo usuário. v
-    Ordenar a matriz de forma crescente, como se fosse um vetor único, e exibir a matriz ordenada. v
-    Calcular a soma de cada linha e cada coluna da matriz, e exibir essas somas. v
-    Encontrar os números que aparecem mais de uma vez na matriz e exibir quais são e quantas vezes eles aparecem. 
-    Calcular a soma da diagonal principal e da diagonal secundária da matriz.
+    Exibir a matriz original inserida pelo usuário. (feito)
+    Ordenar a matriz de forma crescente, como se fosse um vetor único, e exibir a matriz ordenada. (feito)
+    Calcular a soma de cada linha e cada coluna da matriz, e exibir essas somas. (feito)
+    Encontrar os números que aparecem mais de uma vez na matriz e exibir quais são e quantas vezes eles aparecem. (feito)
+    Calcular a soma da diagonal principal e da diagonal secundária da matriz. (feito)
     Substituir todos os números primos da matriz por -1 e exibir a nova matriz
  * @author r.nunes
  */
@@ -29,43 +29,51 @@ public class PROJETO_14_RENAN {
     public static int[] vet = new int[tam * tam];
     
     public static Random random = new Random();
-    public static final int lim = 11;
+    public static final int lim = 101;
     
     public static void main(String[] args) throws IOException{
-        InputNum();
-        System.out.println("Matriz de valores: ");
-        OutputNum();
-        sortArray();
-        System.out.println("Matriz organizada: ");
-        OutputNum();
-        somador();
-        System.out.println("\n");
-        EncontraRepetidos();
+        try {
+            InputNum();
+            System.out.println("\nMatriz de valores: ");
+            OutputNum();
+            sortArray();
+            System.out.println("Matriz organizada: ");
+            OutputNum();
+            somador();
+            System.out.println("\n\nValores que repetem e vezes que ocorrem:");
+            EncontraRepetidos();
+            System.out.println("");
+            CalculaDiagonais();
+            System.out.println("\n");
+            NumerosPrimos();
+        }
+        catch (NumberFormatException erro){
+            System.out.println("Erro: " + erro.getMessage());
+        }
     }
-    // entrada de numeros
+    //  entrada de numeros
     public static void InputNum() throws IOException{
         for (int l = 0; l < tam; l++) {
             for (int c = 0; c < tam; c++) {
                 System.out.printf("Informe o %d.o valor da %d.a linha: ", c+1, l+1);
                 data = new DataInputStream(System.in);
-                entrada = random.nextInt(lim);
-                array[l][c] = entrada;//Integer.parseInt(entrada);
+                entrada = random.nextInt(lim);//data.readLine();
+                array[l][c] = /*Integer.parseInt(*/entrada;//);
             }
         }
     }
-    // Saida de valores de entrada
+    //  Saida de valores de entrada
     public static void OutputNum(){
         for(int[] line : array){
             for (int num : line){
-                System.out.printf("%2d, ", num);
+                System.out.printf("%3d ", num);
             }
             System.out.println("");
         }
         System.out.println("");
     }
-    
+    //  orgazidor
     public static void sortArray(){
-        
         int counter = 0;
         // transferindo valores
         for (int l = 0; l < tam; l++){
@@ -97,8 +105,7 @@ public class PROJETO_14_RENAN {
             }
         }
     }
-    
-    //soma linha e coluna
+    //  soma linha e coluna
     public static void somador(){
         int[] somaLine = new int[tam];
         int[] somaCol = new int[tam];
@@ -135,10 +142,9 @@ public class PROJETO_14_RENAN {
             System.out.printf("%d, ", somaLine[i]);
         }
     }
-    
+    //  ENCONTRA VALORES REPETIDOS NO ARRAY
     public static void EncontraRepetidos(){
         int[] vetAux = vet;
-        
         int ref = vetAux[0]; // referencia base inical sendo o primeiro valor
         int index = 0;
         int contaRepet = 0;
@@ -152,8 +158,8 @@ public class PROJETO_14_RENAN {
             
             // verifica se o valor atual é igual ao próximo valor
             if ((index < (vetAux.length -1)) && (vetAux[i] == vetAux[index + 1])){
-                // verifica se o valor atual é diferente do valor da referencia
-                    // Ou se valor atual for igual a valor inicial(0) sendo zero nao registrado
+                // verifica se o valor atual é diferente da referencia
+                    // Ou se valor atual for igual a valor inicial(0) sendo ele nao registrado
                 if (vetAux[i] != ref || (vetAux[i] == vetAux[0] && temZero == false)){
                     // laço para contagem de repetiçoes
                     for (int c = 0; c < vetAux.length; c++){
@@ -162,13 +168,61 @@ public class PROJETO_14_RENAN {
                             contaRepet ++;
                         }
                     }
-                    // se referencia ainda
+                    // verifica se referencia não mudou
                     if (ref == vetAux[0]){
                         temZero = true;
                     }
+                    // nova referencia
                     ref = vetAux[i];
                     System.out.printf("%d --- %dx\n", ref, contaRepet);
                 }
+            }
+        }
+    }
+    // calculo de diagonais
+    public static void CalculaDiagonais() {
+        int SomaDiagPrincipal = 0;
+        int somaDiagSecundaria = 0;
+        
+        System.out.println("Diagonal Principal:");
+        for (int l = 0; l < tam; l++){
+            for (int c = 0; c < tam; c++) {
+                if (l == c){
+                    System.out.printf("%3d ",array[l][c]);
+                    SomaDiagPrincipal += array[l][c];
+                }
+            }
+        }
+        System.out.printf("\nSoma Diagonal Principal: %d", SomaDiagPrincipal);
+        
+        System.out.println("\n");
+        System.out.println("Diagonal Secundaria:");
+        for (int i = 0; i < vet.length; i++){
+           if(i % 4 == 0 && i > 0 && i < (vet.length -1)){
+               System.out.printf("%3d ", vet[i]);
+               somaDiagSecundaria += vet[i];
+           }
+        }
+        System.out.printf("\nSoma Diagonal Secundaria: %d", somaDiagSecundaria);
+    }
+    
+    public static void NumerosPrimos() {
+        for (int i = 0; i < vet.length; i++) {
+            int contaDivisores = 0;
+            for (int j = 1; j <= vet[i]; j++) {
+                if (vet[i] % j == 0){
+                    contaDivisores ++;
+                }
+            }
+            if (vet[i] != 0 && contaDivisores <= 2){
+                System.out.printf("%3d ", (-1)); 
+            }
+            else {
+                System.out.printf("%3d ",vet[i]);
+            }
+            
+            if ((i+1) % tam == 0){
+                System.out.println("");
             }
         }
     }
