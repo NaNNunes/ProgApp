@@ -48,7 +48,7 @@ public class PROJETO_14_RENAN {
             NumerosPrimos();
         }
         catch (NumberFormatException erro){
-            System.out.println("Erro: " + erro.getMessage());
+            System.out.println("Erro: Formatação inválida: " + erro.getMessage());
         }
     }
     //  entrada de numeros
@@ -199,7 +199,7 @@ public class PROJETO_14_RENAN {
         System.out.println("\n");
         System.out.println("Diagonal Secundaria:");
         for (int i = 0; i < vet.length; i++){
-           if(i % 4 == 0 && i > 0 && i < (vet.length -1)){
+           if(i % (tam-1) == 0 && i > 0 && i < (vet.length -1)){
                System.out.printf("%3d ", vet[i]);
                somaDiagSecundaria += vet[i];
            }
