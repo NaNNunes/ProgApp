@@ -2,9 +2,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  */
 
-package com.mycompany.projeto_15_renan;
+package com.mycompany.projeto_15_renan; 
 
-import java.io.DataInput;
 import java.io.DataInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -38,7 +37,7 @@ public class PROJETO_15_RENAN {
                 catch (Exception erro){
                     System.out.println("Valor invalido");
                 }
-            }
+            } 
         }
         return values;
     }
