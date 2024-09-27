@@ -4,8 +4,6 @@
 
 package com.mycompany.exercicio_01;
 
-import java.awt.BorderLayout;
-import java.io.DataInput;
 import java.io.DataInputStream;
 import java.io.IOException;
 
@@ -19,17 +17,16 @@ public class Exercicio_01 {
     public static void main(String[] args) throws IOException {
         DataInputStream data;
         String input;
-        final int qtdNum = 3;
-        double[] nums = new double[qtdNum];
+        final int qtdNum = 2;
+        int[] nums = new int[qtdNum];
         
         System.out.println("Informe ");
-        for (int i = 0; i < (qtdNum - 1); i++) {
+        for (int i = 0; i < qtdNum; i++) {
             while (true){
                 try {
                     System.out.printf("%d.o valor: ", i+1);
                     data = new DataInputStream(System.in);
-                    nums[i] = Double.parseDouble(input = data.readLine());
-                    nums[2] += nums[i];
+                    nums[i] = Integer.parseInt(input = data.readLine());
                     break;
                 }
                 catch (Exception erro){
@@ -38,6 +35,6 @@ public class Exercicio_01 {
             }
         }
         
-        System.out.printf("Soma de %2f com %2f = %2f", nums[0], nums[1], nums[2]);
+        System.out.printf("Soma de %2d com %2d = %2d", nums[0], nums[1], (nums[0] + nums[1]));
     }
 }
