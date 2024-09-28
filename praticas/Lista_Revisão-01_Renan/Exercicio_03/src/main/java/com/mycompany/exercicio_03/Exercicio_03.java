@@ -2,34 +2,33 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  */
 
-package com.mycompany.exercicio_02;
+package com.mycompany.exercicio_03;
 
 import java.io.DataInputStream;
-import java.io.IOException;
 
 /**
- * Escreva um programa que leia dois números inteiros e 
- * apresente na tela sua soma apenas se ambos forem positivos. 
+ * Escreva um programa que leia dois números inteiros e apresente na tela 
+ * sua soma apenas se ambos tiverem o mesmo sinal (positivo ou negativo). 
  * Use o mesmo formato do exercício anterior e, 
- * caso algum dos números fornecidos seja negativo 
+ * caso os números fornecidos tenham sinais trocados 
  * o programa deve escrever na tela que os "Dados de Entrada são Inválidos".
- * @author r.nunes
+ * @author renan_8tvcd4n
  */
-public class Exercicio_02 {
-    
-    public static void main(String[] args) throws IOException {
+public class Exercicio_03 {
+
+    public static void main(String[] args) {
         System.out.println("Informe 2 valores");
-        sumValues(inputValues());   
+        sumNumbers(inputValues());
     }
     
-    public static int[] inputValues() throws IOException {
+    public static int[] inputValues(){
         DataInputStream data;
         String input;
         final int qtdNum = 2;
         int[] numbers = new int[qtdNum];
         boolean isValid;
         
-        do{
+        do {
             for (int i = 0; i < qtdNum; i++){
                 while (true){
                     try{
@@ -43,25 +42,24 @@ public class Exercicio_02 {
                     }
                 }
             }
-            isValid = checkNums(numbers);
-            
-        }while(!isValid);
+            isValid = checkNumbers(numbers);
+        } while (!isValid);
         return numbers;
     }
     
-    public static boolean checkNums(int[] numbers){
-        boolean isValid = true;
-        for (int i = 0; i < numbers.length; i++) {
-            if (numbers[i] < 0){
-                System.out.println("Dados de Entrada sao Invalidos");
-                isValid = false;
-                break;
+    public static boolean checkNumbers(int[] numbers){
+        boolean[] isValid = new boolean[numbers.length];
+        
+        for (int i = 0; i < numbers.length; i++){
+            isValid[i] = numbers[i] >= 0;
+            if (!isValid[i]){
+                System.out.println("Dados de Entrada Invalidos");
             }
         }
-        return isValid;
+        return isValid[0] == isValid[1];
     }
     
-    public static void sumValues(int[] numbers){
-        System.out.printf("%2d com %2d = %d", numbers[0], numbers[1], (numbers[0] + numbers[1]));
+    public static void sumNumbers(int[] numbers){
+        System.out.printf("%2d + %2d = %2d", numbers[0], numbers[1], (numbers[0] + numbers[1]));
     }
 }
