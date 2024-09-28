@@ -2,41 +2,41 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  */
 
-package com.mycompany.projeto_15_renan;
+package com.mycompany.pratica_exportandjoption;
 
-import java.io.DataInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author r.nunes
  */
-public class PROJETO_15_RENAN {
+public class Pratica_exportAndJOption {
 
-    public static void main(String[] args) throws IOException {
+     public static void main(String[] args) throws IOException {
         toFile(inputValues());
     }
     
     public static int[] inputValues(){
-        DataInputStream data;
         final int len = 5;
         String input;
         int[] values = new int[len];
         
-        System.out.printf("Insira 5 valores\n");
+        JOptionPane.showMessageDialog(null, "Informe 5 valores");
+        
         for (int i = 0; i < len; i++){
             while (true){
                 try {
-                    System.out.printf("%d.o valor: ", i+1);
-                    data = new DataInputStream(System.in);
-                    values[i] = Integer.parseInt(input = data.readLine());
+                    //System.out.printf("%d.o valor: ", i+1);
+                    input = JOptionPane.showInputDialog(null, (i+1) + " valor:");
+                    values[i] = Integer.parseInt(input);
                     break;
                 }
                 catch (Exception erro){
-                    System.out.println("Valor invalido");
-                }
+                    JOptionPane.showMessageDialog(null ,"Valor invalido");
+                } 
             }
         }
         return values;
@@ -57,6 +57,8 @@ public class PROJETO_15_RENAN {
             }
             record.printf("\n---------------");
             record.close();
+            JOptionPane.showMessageDialog(null, fileName + values[i] +
+            " salve em:\n" + "P:\\TURMAS\\HTC-DDS-19\\Renan\\MODULO-2\\Prog-APP\\praticas\\JOptionPane\\pratica_exportAndJOption\\" + fileName + values[i]);
         }
     }
 }
