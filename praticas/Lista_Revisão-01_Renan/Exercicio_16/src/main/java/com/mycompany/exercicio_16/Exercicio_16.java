@@ -39,7 +39,6 @@ public class Exercicio_16 {
         else {
             System.out.println("----------------------");
             salaryEmployee = inputSalary(numberEmployee);
-            System.out.println("----------------------");
             avgWages = sumWages(salaryEmployee, numberEmployee);
             System.out.println("----------------------");
             outputAbvAvg(avgWages, salaryEmployee);
