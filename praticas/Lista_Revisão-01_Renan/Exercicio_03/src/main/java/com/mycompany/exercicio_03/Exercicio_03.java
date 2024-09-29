@@ -5,6 +5,7 @@
 package com.mycompany.exercicio_03;
 
 import java.io.DataInputStream;
+import java.io.IOException;
 
 /**
  * Escreva um programa que leia dois números inteiros e apresente na tela 
@@ -16,13 +17,13 @@ import java.io.DataInputStream;
  */
 public class Exercicio_03 {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         System.out.println("Informe 2 valores");
         sumNumbers(inputValues());
     }
     
-    public static int[] inputValues(){
-        DataInputStream data;
+    public static int[] inputValues() throws IOException{
+        DataInputStream data = null;
         String input;
         final int qtdNum = 2;
         int[] numbers = new int[qtdNum];
@@ -44,6 +45,7 @@ public class Exercicio_03 {
             }
             isValid = checkNumbers(numbers);
         } while (!isValid);
+        data.close();
         return numbers;
     }
     

@@ -5,6 +5,7 @@
 package com.mycompany.exercicio_09;
 
 import java.io.DataInputStream;
+import java.io.IOException;
 
 /**
  * Refaça o exercício 8 armazenando cada um dos valores válidos (dentro do intervalo [Min, Max])
@@ -22,7 +23,7 @@ import java.io.DataInputStream;
  */
 public class Exercicio_09 {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         inputValuesToInterval(inputMinMaxValues());
     }
     
@@ -64,7 +65,7 @@ public class Exercicio_09 {
         return values;
     }
     
-    public static void inputValuesToInterval(int[] values){
+    public static void inputValuesToInterval(int[] values) throws IOException{
         DataInputStream data;
         String input;
         int x, totalVal = 0, counter = 0, validCounter = 0;;
@@ -99,7 +100,7 @@ public class Exercicio_09 {
                 }
             }
         } while (x != 0);
-        
+        data.close();
         outputValuesInInterval(totalVal, counter, Array);
     }
     

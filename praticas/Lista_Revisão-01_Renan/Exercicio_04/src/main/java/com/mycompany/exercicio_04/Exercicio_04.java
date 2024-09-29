@@ -5,6 +5,7 @@
 package com.mycompany.exercicio_04;
 
 import java.io.DataInputStream;
+import java.io.IOException;
 
 /**
  * Escreva um programa que leia três números reais 
@@ -20,13 +21,13 @@ import java.io.DataInputStream;
  */
 public class Exercicio_04 {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         System.out.println("Informe 3 valores");
         toTriangle(inputValues());
     }
     
-    public static double[] inputValues(){
-        DataInputStream data;
+    public static double[] inputValues() throws IOException{
+        DataInputStream data = null;
         String input;
         final int qtdNum = 3;
         double[] numbers = new double[qtdNum];
@@ -48,6 +49,7 @@ public class Exercicio_04 {
             }
             isValid = checkNumbers(numbers);
         } while (!isValid);
+        data.close();
         return numbers;
     }
     

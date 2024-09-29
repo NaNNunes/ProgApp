@@ -23,7 +23,7 @@ public class Exercicio_02 {
     }
     
     public static int[] inputValues() throws IOException {
-        DataInputStream data;
+        DataInputStream data = null;
         String input;
         final int qtdNum = 2;
         int[] numbers = new int[qtdNum];
@@ -46,6 +46,7 @@ public class Exercicio_02 {
             isValid = checkNums(numbers);
             
         }while(!isValid);
+        data.close();
         return numbers;
     }
     

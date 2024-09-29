@@ -25,13 +25,14 @@ public class Exercicio_10 {
         len = inputLength();
         if (len > 0){
             values = inputValues(len);
+            valSeparator(values, len);
         }
         else{
             System.out.println("Fim");
         }
     }
     
-    public static int inputLength(){
+    public static int inputLength() throws IOException{
         final int min = 0;
         final int max = 50;
         
@@ -62,11 +63,11 @@ public class Exercicio_10 {
             }
         } while (!isValid);
         
-       return value;
+        return value;
     }
 
     public static double[] inputValues(int len) throws IOException{
-        DataInputStream data;
+        DataInputStream data = null;
         String input;
         
         double[] aArray = new double[len];
@@ -76,7 +77,8 @@ public class Exercicio_10 {
                 try {
                     System.out.printf("%d.o valor: ", i+1);
                     data = new DataInputStream(System.in);
-                    aArray[i] = Double.parseDouble(input = data.readLine());
+                    input = data.readLine();
+                    aArray[i] = Double.parseDouble(input);
                     break;
                 }
                 catch (Exception erro){
@@ -84,9 +86,54 @@ public class Exercicio_10 {
                 }
             }         
         }
-        
+        data.close();
         return aArray;
     }
     
-
+    public static void valSeparator(double[] values, int len){
+        double[] POS, NEG;
+        int pCounter = 0, nCounter = 0;
+        
+        for (int i = 0; i < len; i++) {
+            if (values[i]< 0){
+                nCounter ++;
+            }
+            else{
+                pCounter ++;
+            }
+        }
+        
+        POS = new double[pCounter];
+        NEG = new double[nCounter];
+        nCounter = 0;
+        pCounter = 0;
+        
+        for (int i = 0; i < len; i++) {
+            if (values[i] < 0){
+                NEG[nCounter++] = values[i];
+            }
+            else{
+                POS[pCounter++] = values[i];
+            }
+        }
+        
+        outputValues(NEG, POS, nCounter, pCounter);
+    }
+    
+    public static void outputValues(double[] NEG, double[] POS, int nLen, int pLen){
+        System.out.println("-----------------------------");
+        System.out.println("Valores negativos: ");
+        for (int i = 0; i < nLen; i++) {
+            System.out.println(NEG[i]);
+        }
+        System.out.println("Quantidade de valores negativos: " + nLen);
+        
+        System.out.println("-----------------------------");
+        
+        System.out.println("Valores naturais: ");
+        for (int i = 0; i < pLen; i++) {
+            System.out.println(POS[i]);
+        }
+        System.out.println("Quantidade de valores naturais: " + pLen);
+    }
 }

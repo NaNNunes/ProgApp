@@ -5,6 +5,7 @@
 package com.mycompany.exercicio_08;
 
 import java.io.DataInputStream;
+import java.io.IOException;
 
 /**
  * Escreva um programa que leia dois números inteiros denominados Min e Max.
@@ -29,7 +30,7 @@ import java.io.DataInputStream;
  */
 public class Exercicio_08 {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         inputValuesToInterval(inputMinMaxValues());
     }
     
@@ -71,7 +72,7 @@ public class Exercicio_08 {
         return values;
     }
     
-    public static void inputValuesToInterval(int[] values){
+    public static void inputValuesToInterval(int[] values) throws IOException{
         DataInputStream data;
         String input;
         int x, totalVal = 0, counter = 0;
@@ -104,7 +105,7 @@ public class Exercicio_08 {
                 }
             }
         } while (x != 0);
-        
+        data.close();
         outputValuesInInterval(totalVal, counter);
     }
     

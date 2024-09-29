@@ -15,7 +15,7 @@ import java.io.IOException;
 public class Exercicio_01 {
 
     public static void main(String[] args) throws IOException {
-        DataInputStream data;
+        DataInputStream data = null;
         String input;
         final int qtdNum = 2;
         int[] nums = new int[qtdNum];
@@ -34,7 +34,7 @@ public class Exercicio_01 {
                 }
             }
         }
-        
+        data.close();
         System.out.printf("Soma de %2d com %2d = %2d", nums[0], nums[1], (nums[0] + nums[1]));
     }
 }

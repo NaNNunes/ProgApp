@@ -33,7 +33,7 @@ public class ToValues {
                 System.out.printf("Informe um valor valido: ");
             }
         }
-        
+        data.close();
         return valor;
     }
     

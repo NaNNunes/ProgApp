@@ -1,0 +1,3 @@
+Nome fornecido: Jose Aldo
+Peso fornecido: 75.0
+O lutador Jose Aldo pesa 75.0 kg e se enquadra na categoria Ligeiro.
