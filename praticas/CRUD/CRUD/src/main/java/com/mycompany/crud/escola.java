@@ -4,6 +4,13 @@
  */
 package com.mycompany.crud;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author r.nunes
@@ -28,12 +35,12 @@ public class escola extends javax.swing.JFrame {
 
         Jpanel_background_Escola = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        Jtxtf_nome = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        Jtxtf_dt_nasc = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        Jtxtf_CPF = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
 
@@ -43,20 +50,17 @@ public class escola extends javax.swing.JFrame {
         Jpanel_background_Escola.setBackground(new java.awt.Color(204, 204, 204));
 
         jLabel1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Nome:");
 
-        jTextField1.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField1.setPreferredSize(new java.awt.Dimension(130, 25));
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        Jtxtf_nome.setPreferredSize(new java.awt.Dimension(130, 25));
+        Jtxtf_nome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                Jtxtf_nomeActionPerformed(evt);
             }
         });
 
         jButton1.setBackground(new java.awt.Color(51, 153, 0));
         jButton1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(0, 0, 0));
         jButton1.setText("Salvar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -65,23 +69,18 @@ public class escola extends javax.swing.JFrame {
         });
 
         jLabel2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Nascimento:");
 
-        jTextField2.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jTextField2.setPreferredSize(new java.awt.Dimension(130, 25));
+        Jtxtf_dt_nasc.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        Jtxtf_dt_nasc.setPreferredSize(new java.awt.Dimension(130, 25));
 
         jLabel3.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("CPF:");
 
-        jTextField3.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField3.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jTextField3.setPreferredSize(new java.awt.Dimension(130, 25));
+        Jtxtf_CPF.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        Jtxtf_CPF.setPreferredSize(new java.awt.Dimension(130, 25));
 
         jLabel4.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Aluno");
 
         javax.swing.GroupLayout Jpanel_background_EscolaLayout = new javax.swing.GroupLayout(Jpanel_background_Escola);
@@ -107,15 +106,15 @@ public class escola extends javax.swing.JFrame {
                     .addGroup(Jpanel_background_EscolaLayout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(Jtxtf_CPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(Jpanel_background_EscolaLayout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(Jtxtf_dt_nasc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(Jpanel_background_EscolaLayout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(Jtxtf_nome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(84, 84, 84))
         );
         Jpanel_background_EscolaLayout.setVerticalGroup(
@@ -128,15 +127,15 @@ public class escola extends javax.swing.JFrame {
                 .addGap(40, 40, 40)
                 .addGroup(Jpanel_background_EscolaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Jtxtf_nome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(Jpanel_background_EscolaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Jtxtf_dt_nasc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(Jpanel_background_EscolaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Jtxtf_CPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(52, 52, 52))
@@ -156,12 +155,51 @@ public class escola extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void Jtxtf_nomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Jtxtf_nomeActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_Jtxtf_nomeActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        Connection connection = null;
+        PreparedStatement statement = null;
+        
+        String url = "jdbc:mysql:localhost:3306/escola";
+        String usuario = "root";
+        String senha = "";
+        
+        try {
+            connection = DriverManager.getConnection(url, usuario, senha);
+            String sql = "INSERT INTO aluno(nome, nascimento, cpf) VALUES(?, ?, ?)";
+            statement = connection.prepareStatement(sql);
+            
+            statement.setString(1, Jtxtf_nome.getText());
+            statement.setString(2, Jtxtf_dt_nasc.getText());
+            statement.setString(3, Jtxtf_CPF.getText());
+            
+            int linhasAfetadas = statement.executeUpdate();
+            if (linhasAfetadas > 0){
+                System.out.println(linhasAfetadas + "linha(s) afetada");
+            }
+            else{
+                System.out.println("Deu erro, nenhuma linha afetada");
+            }
+            
+        } catch (SQLException e) {
+            System.out.println("Erro ao inserir dados: " + e.getMessage());
+            //label_yes.setVisible(true);
+        } finally {
+            try{
+                if (statement != null){
+                    statement.close();
+                }
+                if (connection != null){
+                connection.close();
+                }
+            } catch (SQLException e){
+                System.out.println("Erro ao fechar conexão: " + e.getMessage());
+            }
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -201,14 +239,14 @@ public class escola extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Jpanel_background_Escola;
+    private javax.swing.JTextField Jtxtf_CPF;
+    private javax.swing.JTextField Jtxtf_dt_nasc;
+    private javax.swing.JTextField Jtxtf_nome;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
     // End of variables declaration//GEN-END:variables
 }
