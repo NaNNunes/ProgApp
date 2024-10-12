@@ -8,8 +8,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.SQLOutput;
 import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.logging.Logger; 
 
 /**
  *
@@ -33,24 +34,23 @@ public class escola extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        Jpanel_background_Escola = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        Jpanel_background_Escola1 = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
         Jtxtf_nome = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        Jtxtf_dt_nasc = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
+        Jbtn_salvar = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        Jtxtf_sobrenome = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
         Jtxtf_CPF = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        jSeparator1 = new javax.swing.JSeparator();
+        jLabel8 = new javax.swing.JLabel();
+        jSeparator2 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(800, 800));
 
-        Jpanel_background_Escola.setBackground(new java.awt.Color(204, 204, 204));
+        Jpanel_background_Escola1.setBackground(new java.awt.Color(204, 204, 204));
 
-        jLabel1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jLabel1.setText("Nome:");
+        jLabel5.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabel5.setText("Nome:");
 
         Jtxtf_nome.setPreferredSize(new java.awt.Dimension(130, 25));
         Jtxtf_nome.addActionListener(new java.awt.event.ActionListener() {
@@ -59,85 +59,81 @@ public class escola extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setBackground(new java.awt.Color(51, 153, 0));
-        jButton1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jButton1.setText("Salvar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        Jbtn_salvar.setBackground(new java.awt.Color(51, 153, 0));
+        Jbtn_salvar.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        Jbtn_salvar.setText("Salvar");
+        Jbtn_salvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                Jbtn_salvarActionPerformed(evt);
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jLabel2.setText("Nascimento:");
+        jLabel6.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabel6.setText("Sobrenome:");
 
-        Jtxtf_dt_nasc.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        Jtxtf_dt_nasc.setPreferredSize(new java.awt.Dimension(130, 25));
+        Jtxtf_sobrenome.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        Jtxtf_sobrenome.setPreferredSize(new java.awt.Dimension(130, 25));
 
-        jLabel3.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jLabel3.setText("CPF:");
+        jLabel7.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabel7.setText("CPF:");
 
         Jtxtf_CPF.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         Jtxtf_CPF.setPreferredSize(new java.awt.Dimension(130, 25));
 
-        jLabel4.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jLabel4.setText("Aluno");
+        jLabel8.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jLabel8.setText("Cadastro Aluno");
 
-        javax.swing.GroupLayout Jpanel_background_EscolaLayout = new javax.swing.GroupLayout(Jpanel_background_Escola);
-        Jpanel_background_Escola.setLayout(Jpanel_background_EscolaLayout);
-        Jpanel_background_EscolaLayout.setHorizontalGroup(
-            Jpanel_background_EscolaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(Jpanel_background_EscolaLayout.createSequentialGroup()
-                .addGroup(Jpanel_background_EscolaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(Jpanel_background_EscolaLayout.createSequentialGroup()
-                        .addGap(131, 131, 131)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(Jpanel_background_EscolaLayout.createSequentialGroup()
-                        .addGap(167, 167, 167)
-                        .addComponent(jLabel4)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Jpanel_background_EscolaLayout.createSequentialGroup()
-                .addGap(0, 135, Short.MAX_VALUE)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(146, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Jpanel_background_EscolaLayout.createSequentialGroup()
+        javax.swing.GroupLayout Jpanel_background_Escola1Layout = new javax.swing.GroupLayout(Jpanel_background_Escola1);
+        Jpanel_background_Escola1.setLayout(Jpanel_background_Escola1Layout);
+        Jpanel_background_Escola1Layout.setHorizontalGroup(
+            Jpanel_background_Escola1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(Jpanel_background_Escola1Layout.createSequentialGroup()
+                .addGap(131, 131, 131)
+                .addComponent(Jbtn_salvar, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(161, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Jpanel_background_Escola1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(Jpanel_background_EscolaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(Jpanel_background_EscolaLayout.createSequentialGroup()
-                        .addComponent(jLabel3)
+                .addGroup(Jpanel_background_Escola1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(Jpanel_background_Escola1Layout.createSequentialGroup()
+                        .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(Jtxtf_CPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(Jpanel_background_EscolaLayout.createSequentialGroup()
-                        .addComponent(jLabel2)
+                    .addGroup(Jpanel_background_Escola1Layout.createSequentialGroup()
+                        .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Jtxtf_dt_nasc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(Jpanel_background_EscolaLayout.createSequentialGroup()
-                        .addComponent(jLabel1)
+                        .addComponent(Jtxtf_sobrenome, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(Jpanel_background_Escola1Layout.createSequentialGroup()
+                        .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Jtxtf_nome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(Jpanel_background_Escola1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel8)
+                            .addComponent(Jtxtf_nome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(Jpanel_background_Escola1Layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGap(84, 84, 84))
         );
-        Jpanel_background_EscolaLayout.setVerticalGroup(
-            Jpanel_background_EscolaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(Jpanel_background_EscolaLayout.createSequentialGroup()
+        Jpanel_background_Escola1Layout.setVerticalGroup(
+            Jpanel_background_Escola1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(Jpanel_background_Escola1Layout.createSequentialGroup()
                 .addGap(23, 23, 23)
-                .addComponent(jLabel4)
+                .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40)
-                .addGroup(Jpanel_background_EscolaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
+                .addGroup(Jpanel_background_Escola1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
                     .addComponent(Jtxtf_nome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(Jpanel_background_EscolaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(Jtxtf_dt_nasc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(Jpanel_background_Escola1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(Jtxtf_sobrenome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(Jpanel_background_EscolaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
+                .addGroup(Jpanel_background_Escola1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
                     .addComponent(Jtxtf_CPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Jbtn_salvar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(52, 52, 52))
         );
 
@@ -145,11 +141,11 @@ public class escola extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Jpanel_background_Escola, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(Jpanel_background_Escola1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Jpanel_background_Escola, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(Jpanel_background_Escola1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -159,48 +155,49 @@ public class escola extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_Jtxtf_nomeActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void Jbtn_salvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Jbtn_salvarActionPerformed
         // TODO add your handling code here:
         Connection connection = null;
         PreparedStatement statement = null;
-        
-        String url = "jdbc:mysql:localhost:3306/escola";
+
+        String url = "jdbc:mysql://localhost:3306/escola";
         String usuario = "root";
         String senha = "";
-        
+
         try {
             connection = DriverManager.getConnection(url, usuario, senha);
-            String sql = "INSERT INTO aluno(nome, nascimento, cpf) VALUES(?, ?, ?)";
+            String sql = "INSERT INTO aluno(nome, sobrenome, CPF) VALUES(?, ?, ?)";
             statement = connection.prepareStatement(sql);
-            
+
             statement.setString(1, Jtxtf_nome.getText());
-            statement.setString(2, Jtxtf_dt_nasc.getText());
+            statement.setString(2, Jtxtf_sobrenome.getText());
             statement.setString(3, Jtxtf_CPF.getText());
-            
-            int linhasAfetadas = statement.executeUpdate();
+            statement.executeUpdate();
+            System.out.println("Cadastro Realizado!");
+            /*int linhasAfetadas = statement.executeUpdate();
             if (linhasAfetadas > 0){
                 System.out.println(linhasAfetadas + "linha(s) afetada");
             }
             else{
                 System.out.println("Deu erro, nenhuma linha afetada");
-            }
-            
+            }*/
+
         } catch (SQLException e) {
             System.out.println("Erro ao inserir dados: " + e.getMessage());
             //label_yes.setVisible(true);
-        } finally {
+        }/* finally {
             try{
                 if (statement != null){
                     statement.close();
                 }
                 if (connection != null){
-                connection.close();
+                    connection.close();
                 }
             } catch (SQLException e){
                 System.out.println("Erro ao fechar conexão: " + e.getMessage());
             }
-        }
-    }//GEN-LAST:event_jButton1ActionPerformed
+        }*/
+    }//GEN-LAST:event_Jbtn_salvarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -238,15 +235,15 @@ public class escola extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel Jpanel_background_Escola;
+    private javax.swing.JButton Jbtn_salvar;
+    private javax.swing.JPanel Jpanel_background_Escola1;
     private javax.swing.JTextField Jtxtf_CPF;
-    private javax.swing.JTextField Jtxtf_dt_nasc;
     private javax.swing.JTextField Jtxtf_nome;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JTextField Jtxtf_sobrenome;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JSeparator jSeparator2;
     // End of variables declaration//GEN-END:variables
 }

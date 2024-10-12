@@ -25,13 +25,12 @@ DROP TABLE IF EXISTS `aluno`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `aluno` (
+  `nome` varchar(20) DEFAULT NULL,
+  `sobrenome` varchar(20) DEFAULT NULL,
+  `CPF` varchar(11) DEFAULT NULL,
   `ra_aluno` int(11) NOT NULL AUTO_INCREMENT,
-  `nome` varchar(30) DEFAULT NULL,
-  `dt_nasc` date DEFAULT NULL,
-  `CPF` char(11) NOT NULL,
-  PRIMARY KEY (`ra_aluno`),
-  UNIQUE KEY `CPF` (`CPF`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  PRIMARY KEY (`ra_aluno`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,31 +39,8 @@ CREATE TABLE `aluno` (
 
 LOCK TABLES `aluno` WRITE;
 /*!40000 ALTER TABLE `aluno` DISABLE KEYS */;
+INSERT INTO `aluno` VALUES ('Mykael','Deolindo','mykael',1),('Renan','Nunes','12345678910',2);
 /*!40000 ALTER TABLE `aluno` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `matricula`
---
-
-DROP TABLE IF EXISTS `matricula`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `matricula` (
-  `cod_matricula` int(11) NOT NULL AUTO_INCREMENT,
-  `cod_curso` int(11) DEFAULT NULL,
-  `ra_aluno` int(11) DEFAULT NULL,
-  PRIMARY KEY (`cod_matricula`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `matricula`
---
-
-LOCK TABLES `matricula` WRITE;
-/*!40000 ALTER TABLE `matricula` DISABLE KEYS */;
-/*!40000 ALTER TABLE `matricula` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -76,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-10-09 20:51:26
+-- Dump completed on 2024-10-11 21:36:02
