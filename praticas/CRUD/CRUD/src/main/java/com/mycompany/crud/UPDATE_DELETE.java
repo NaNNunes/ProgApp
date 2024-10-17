@@ -13,12 +13,12 @@ import java.sql.SQLException;
  *
  * @author r.nunes
  */
-public class AtaualizarCadAluno extends javax.swing.JFrame {
+public class UPDATE_DELETE extends javax.swing.JFrame {
 
     /**
      * Creates new form AtaualizarCadAluno
      */
-    public AtaualizarCadAluno() {
+    public UPDATE_DELETE() {
         initComponents();
     }
 
@@ -41,6 +41,7 @@ public class AtaualizarCadAluno extends javax.swing.JFrame {
         Jtxtf_raAluno = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -59,6 +60,7 @@ public class AtaualizarCadAluno extends javax.swing.JFrame {
         Jbtn_atualizar.setBackground(new java.awt.Color(51, 153, 0));
         Jbtn_atualizar.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         Jbtn_atualizar.setText("Atualizar");
+        Jbtn_atualizar.setPreferredSize(new java.awt.Dimension(110, 40));
         Jbtn_atualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Jbtn_atualizarActionPerformed(evt);
@@ -80,18 +82,23 @@ public class AtaualizarCadAluno extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jLabel4.setText("Atualizar Cadastro Aluno");
 
+        jButton1.setBackground(new java.awt.Color(204, 0, 0));
+        jButton1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jButton1.setText("Apagar");
+        jButton1.setPreferredSize(new java.awt.Dimension(110, 40));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout Jpanel_background_EscolaLayout = new javax.swing.GroupLayout(Jpanel_background_Escola);
         Jpanel_background_Escola.setLayout(Jpanel_background_EscolaLayout);
         Jpanel_background_EscolaLayout.setHorizontalGroup(
             Jpanel_background_EscolaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(Jpanel_background_EscolaLayout.createSequentialGroup()
-                .addGroup(Jpanel_background_EscolaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(Jpanel_background_EscolaLayout.createSequentialGroup()
-                        .addGap(131, 131, 131)
-                        .addComponent(Jbtn_atualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(Jpanel_background_EscolaLayout.createSequentialGroup()
-                        .addGap(102, 102, 102)
-                        .addComponent(jLabel4)))
+                .addGap(102, 102, 102)
+                .addComponent(jLabel4)
                 .addContainerGap(120, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Jpanel_background_EscolaLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -113,6 +120,12 @@ public class AtaualizarCadAluno extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(Jtxtf_sobrenome, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(84, 84, 84))
+            .addGroup(Jpanel_background_EscolaLayout.createSequentialGroup()
+                .addGap(62, 62, 62)
+                .addComponent(Jbtn_atualizar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(67, 67, 67)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         Jpanel_background_EscolaLayout.setVerticalGroup(
             Jpanel_background_EscolaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -133,9 +146,11 @@ public class AtaualizarCadAluno extends javax.swing.JFrame {
                 .addGroup(Jpanel_background_EscolaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(Jtxtf_raAluno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(36, 36, 36)
-                .addComponent(Jbtn_atualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(52, 52, 52))
+                .addGap(38, 38, 38)
+                .addGroup(Jpanel_background_EscolaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Jbtn_atualizar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(50, 50, 50))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -152,7 +167,7 @@ public class AtaualizarCadAluno extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(Jpanel_background_Escola, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(279, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -206,6 +221,30 @@ public class AtaualizarCadAluno extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_Jtxtf_nomeActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        Connection connection = null;
+        PreparedStatement statement = null;
+        
+        String url = "jdbc:mysql://localhost:3306/escola";
+        String user = "root";
+        String psswrd = "";
+        
+        try {
+            connection = DriverManager.getConnection(url, user, psswrd);
+            String query = "DELETE FROM aluno WHERE ra_aluno = ?";
+            statement = connection.prepareStatement(query);
+            
+            statement.setString(1, Jtxtf_raAluno.getText());
+            statement.executeUpdate();
+            System.out.println("Cadastro Apagado!");
+            
+        } catch (SQLException erro){
+            System.out.println("Erro: " + erro.getMessage());
+        }
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -223,20 +262,21 @@ public class AtaualizarCadAluno extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AtaualizarCadAluno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UPDATE_DELETE.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AtaualizarCadAluno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UPDATE_DELETE.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AtaualizarCadAluno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UPDATE_DELETE.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AtaualizarCadAluno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UPDATE_DELETE.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AtaualizarCadAluno().setVisible(true);
+                new UPDATE_DELETE().setVisible(true);
             }
         });
     }
@@ -247,6 +287,7 @@ public class AtaualizarCadAluno extends javax.swing.JFrame {
     private javax.swing.JTextField Jtxtf_nome;
     private javax.swing.JTextField Jtxtf_raAluno;
     private javax.swing.JTextField Jtxtf_sobrenome;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
