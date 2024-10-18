@@ -45,7 +45,6 @@ public class Inserir_Instrutor extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(600, 400));
         setMinimumSize(new java.awt.Dimension(600, 400));
-        setPreferredSize(new java.awt.Dimension(600, 400));
 
         Jtxtf_Nome.setPreferredSize(new java.awt.Dimension(200, 30));
 
@@ -139,7 +138,7 @@ public class Inserir_Instrutor extends javax.swing.JFrame {
         Connection connection = null;
         PreparedStatement statement = null;
         
-        String url = "jdbc:mysql://localhost:3306/projeto18";
+        String url = "jdbc:mysql://localhost:3306/projeto17";
         String user = "root";
         String psswrd = "";
         

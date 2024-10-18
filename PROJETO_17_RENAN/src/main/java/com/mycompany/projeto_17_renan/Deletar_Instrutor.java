@@ -91,7 +91,7 @@ public class Deletar_Instrutor extends javax.swing.JFrame {
         // TODO add your handling code here:
         Connection connection = null;
         PreparedStatement statement = null;
-        String url = "jdbc:mysql://localhost:3306/projeto18";
+        String url = "jdbc:mysql://localhost:3306/projeto17";
         String user = "root";
         String psswrd = "";
 
