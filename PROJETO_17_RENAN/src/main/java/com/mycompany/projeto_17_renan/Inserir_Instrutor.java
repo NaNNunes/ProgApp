@@ -34,11 +34,7 @@ public class Inserir_Instrutor extends javax.swing.JFrame {
         Jtxtf_Nome = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         Jlbl_nome = new javax.swing.JLabel();
-        Jlbl_Sobrenome = new javax.swing.JLabel();
         Jlbl_CPF = new javax.swing.JLabel();
-        Jlbl_Tel = new javax.swing.JLabel();
-        Jtxtf_Tel = new javax.swing.JTextField();
-        Jtxtf_Sobrenome = new javax.swing.JTextField();
         Jtxtf_CPF = new javax.swing.JTextField();
         Jbtn_Cadastrar = new javax.swing.JButton();
 
@@ -52,15 +48,7 @@ public class Inserir_Instrutor extends javax.swing.JFrame {
 
         Jlbl_nome.setText("Nome:");
 
-        Jlbl_Sobrenome.setText("Sobrenome:");
-
         Jlbl_CPF.setText("CPF:");
-
-        Jlbl_Tel.setText("Telefone:");
-
-        Jtxtf_Tel.setPreferredSize(new java.awt.Dimension(200, 30));
-
-        Jtxtf_Sobrenome.setPreferredSize(new java.awt.Dimension(200, 30));
 
         Jtxtf_CPF.setPreferredSize(new java.awt.Dimension(200, 30));
 
@@ -89,15 +77,9 @@ public class Inserir_Instrutor extends javax.swing.JFrame {
                                 .addGap(34, 34, 34)
                                 .addComponent(Jtxtf_Nome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(Jlbl_Sobrenome)
-                                    .addComponent(Jlbl_CPF)
-                                    .addComponent(Jlbl_Tel))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(Jtxtf_Tel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(Jtxtf_Sobrenome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(Jtxtf_CPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                .addComponent(Jlbl_CPF)
+                                .addGap(46, 46, 46)
+                                .addComponent(Jtxtf_CPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(180, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -109,23 +91,15 @@ public class Inserir_Instrutor extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(37, 37, 37)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Jlbl_nome)
                     .addComponent(Jtxtf_Nome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Jlbl_Sobrenome)
-                    .addComponent(Jtxtf_Sobrenome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Jlbl_CPF)
                     .addComponent(Jtxtf_CPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Jtxtf_Tel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Jlbl_Tel))
-                .addGap(40, 40, 40)
+                .addGap(69, 69, 69)
                 .addComponent(Jbtn_Cadastrar)
                 .addGap(89, 89, 89))
         );
@@ -144,13 +118,11 @@ public class Inserir_Instrutor extends javax.swing.JFrame {
         
         try{
             connection = DriverManager.getConnection(url, user, psswrd);
-            String query = "INSERT INTO instrutor(nome, sobrenome, CPF, telefone) VALUES(?,?,?,?)";
+            String query = "INSERT INTO aluno(nome, cpf) VALUES(?,?)";
             statement = connection.prepareStatement(query);
             
             statement.setString(1, Jtxtf_Nome.getText());
-            statement.setString(2, Jtxtf_Sobrenome.getText());
-            statement.setString(3, Jtxtf_CPF.getText());
-            statement.setString(4, Jtxtf_Tel.getText());
+            statement.setString(2, Jtxtf_CPF.getText());
             statement.executeUpdate();
             System.out.println("Cadastro Realizado!");
             
@@ -197,13 +169,9 @@ public class Inserir_Instrutor extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Jbtn_Cadastrar;
     private javax.swing.JLabel Jlbl_CPF;
-    private javax.swing.JLabel Jlbl_Sobrenome;
-    private javax.swing.JLabel Jlbl_Tel;
     private javax.swing.JLabel Jlbl_nome;
     private javax.swing.JTextField Jtxtf_CPF;
     private javax.swing.JTextField Jtxtf_Nome;
-    private javax.swing.JTextField Jtxtf_Sobrenome;
-    private javax.swing.JTextField Jtxtf_Tel;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

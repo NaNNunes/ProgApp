@@ -9,13 +9,45 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author renan_8tvcd4n
  */
 public class Consulta_Funcionario extends javax.swing.JFrame {
-
+public void popTabela(String sql) throws SQLException{
+    try {
+        
+        String url = "jdbc:mysql://localhost:3306/projeto17";
+        String user = "root";
+        String psswrd = "";
+        
+        Connection connection = (Connection)DriverManager.getConnection(url, user, psswrd);
+        PreparedStatement statement = (PreparedStatement) connection.prepareStatement(sql);
+        statement.execute();
+        
+        ResultSet resultSet = statement.executeQuery(sql);
+        
+        DefaultTableModel model = (DefaultTableModel) Tabela.getModel();
+        model.setNumRows(0);
+        
+        while(resultSet.next()){
+            model.addRow(new Object[]{
+                resultSet.getString("id_aluno"),
+                resultSet.getString("nome"),
+                resultSet.getString("cpf")
+            });
+        }
+        statement.close();
+        connection.close();
+        
+    } catch (SQLException erro){
+        System.out.println("Erro: " + erro.getMessage());
+    }
+}
     /**
      * Creates new form Consulta_Funcionario
      */
@@ -36,10 +68,10 @@ public class Consulta_Funcionario extends javax.swing.JFrame {
         Jtxtf_Consulta_FuncionarioByID = new javax.swing.JTextField();
         Jlbl_Nome = new javax.swing.JLabel();
         Jlbl_CPF = new javax.swing.JLabel();
-        Jlbl_Tel = new javax.swing.JLabel();
         Jtxtf_Retorno_Nome = new javax.swing.JTextField();
-        Jtxtf_Retorno_Tel = new javax.swing.JTextField();
         Jtxtf_Retorno_CPF = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        Tabela = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(600, 400));
@@ -73,9 +105,6 @@ public class Consulta_Funcionario extends javax.swing.JFrame {
         Jlbl_CPF.setText("CPF:");
         getContentPane().add(Jlbl_CPF, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 202, -1, -1));
 
-        Jlbl_Tel.setText("Telefone:");
-        getContentPane().add(Jlbl_Tel, new org.netbeans.lib.awtextra.AbsoluteConstraints(126, 238, -1, -1));
-
         Jtxtf_Retorno_Nome.setPreferredSize(new java.awt.Dimension(200, 30));
         Jtxtf_Retorno_Nome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -83,14 +112,6 @@ public class Consulta_Funcionario extends javax.swing.JFrame {
             }
         });
         getContentPane().add(Jtxtf_Retorno_Nome, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 160, 256, -1));
-
-        Jtxtf_Retorno_Tel.setPreferredSize(new java.awt.Dimension(200, 30));
-        Jtxtf_Retorno_Tel.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Jtxtf_Retorno_TelActionPerformed(evt);
-            }
-        });
-        getContentPane().add(Jtxtf_Retorno_Tel, new org.netbeans.lib.awtextra.AbsoluteConstraints(192, 231, -1, -1));
 
         Jtxtf_Retorno_CPF.setPreferredSize(new java.awt.Dimension(200, 30));
         Jtxtf_Retorno_CPF.addActionListener(new java.awt.event.ActionListener() {
@@ -100,16 +121,27 @@ public class Consulta_Funcionario extends javax.swing.JFrame {
         });
         getContentPane().add(Jtxtf_Retorno_CPF, new org.netbeans.lib.awtextra.AbsoluteConstraints(192, 195, -1, -1));
 
+        Tabela.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "id_aluno", "nome", "cpf"
+            }
+        ));
+        jScrollPane1.setViewportView(Tabela);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 300, -1, 240));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void Jtxtf_Retorno_NomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Jtxtf_Retorno_NomeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_Jtxtf_Retorno_NomeActionPerformed
-
-    private void Jtxtf_Retorno_TelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Jtxtf_Retorno_TelActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Jtxtf_Retorno_TelActionPerformed
 
     private void Jtxtf_Retorno_CPFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Jtxtf_Retorno_CPFActionPerformed
         // TODO add your handling code here:
@@ -135,7 +167,6 @@ public class Consulta_Funcionario extends javax.swing.JFrame {
             if (resultSet.next()){
                 Jtxtf_Retorno_Nome.setText(resultSet.getString("nome") + " " + resultSet.getString("Sobrenome"));
                 Jtxtf_Retorno_CPF.setText(resultSet.getString("CPF"));
-                Jtxtf_Retorno_Tel.setText(resultSet.getString("telefone"));
                 
             }
             else {
@@ -150,7 +181,17 @@ public class Consulta_Funcionario extends javax.swing.JFrame {
     }//GEN-LAST:event_Jbtn_PesquisarActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        // TODO add your handling code here:
+        Connection connection = null;
+        PreparedStatement statement = null;
+        String url = "jdbc:mysql://localhost:3306/projeto17";
+        String user = "root";
+        String psswrd = "";
+        
+    try {
+        this.popTabela("SELECT * FROM aluno");
+    } catch (SQLException erro) {
+        System.out.println("erro: " + erro.getMessage());
+    }
     }//GEN-LAST:event_formWindowOpened
 
     private void Jtxtf_Consulta_FuncionarioByIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Jtxtf_Consulta_FuncionarioByIDActionPerformed
@@ -196,10 +237,10 @@ public class Consulta_Funcionario extends javax.swing.JFrame {
     private javax.swing.JButton Jbtn_Pesquisar;
     private javax.swing.JLabel Jlbl_CPF;
     private javax.swing.JLabel Jlbl_Nome;
-    private javax.swing.JLabel Jlbl_Tel;
     private javax.swing.JTextField Jtxtf_Consulta_FuncionarioByID;
     private javax.swing.JTextField Jtxtf_Retorno_CPF;
     private javax.swing.JTextField Jtxtf_Retorno_Nome;
-    private javax.swing.JTextField Jtxtf_Retorno_Tel;
+    private javax.swing.JTable Tabela;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }
