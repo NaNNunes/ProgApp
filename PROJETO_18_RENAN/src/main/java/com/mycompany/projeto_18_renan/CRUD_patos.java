@@ -243,15 +243,32 @@ public class CRUD_patos extends javax.swing.JFrame {
     }//GEN-LAST:event_Jtxtf_alturaActionPerformed
 
     private void Jbtn_cadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Jbtn_cadastrarActionPerformed
-        String query = "INSERT INTO pato(nome, nome_cientifico, idade, altura, peso, velocidade) values(?,?,?,?,?,?)";
+        
         String url = "jdbc:mysql://localhost:3306/projeto_18";
         String user = "root";
         String pss = "";
         
+        Connection connection = null;
+        PreparedStatement statement = null;
         
-        Connection connection = (Connection) DriverManager.getConnection(url, user, pss);
-        PreparedStatement statement = (PreparedStatement) connection.prepareStatement(query);
-        
+        try {
+            connection = DriverManager.getConnection(url, user, pss);
+            String query = "INSERT INTO pato(nome, nome_cientifico, idade, altura, peso, velocidade) values(?,?,?,?,?,?)";
+            statement = connection.prepareStatement(query);
+            
+            statement.setString(1, Jtxtf_nome.getText());
+            statement.setString(2, Jtxtf_nomeCien.getText());
+            statement.setString(3, Jtxtf_idade.getText());
+            statement.setString(4, Jtxtf_altura.getText());
+            statement.setString(5, Jtxtf_peso.getText());
+            statement.setString(6, Jtxtf_VelocidadeMedia.getText());
+            
+            statement.execute();
+            System.out.println("Pato cadastrado");
+        }
+        catch (SQLException erro){
+            System.out.println("Erro: " + erro.getMessage());
+        }
         
     }//GEN-LAST:event_Jbtn_cadastrarActionPerformed
 
